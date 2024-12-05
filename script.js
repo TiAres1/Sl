@@ -52,6 +52,31 @@ document.getElementById('file-input').addEventListener('change', () => {
     }
 });
 
+document.querySelector('.overlay').addEventListener('click', () => {
+    hideNotification();
+});
+
+document.querySelector('.notification').addEventListener('click', () => {
+    hideNotification();
+});
+
+function hideNotification() {
+    const notification = document.querySelector('.notification');
+    const overlay = document.querySelector('.overlay');
+    notification.classList.add('hide');
+    notification.classList.remove('show');
+    overlay.style.display = 'none';
+}
+
+function showNotification(message) {
+    const notification = document.querySelector('.notification');
+    const overlay = document.querySelector('.overlay');
+    notification.textContent = message;
+    notification.classList.add('show');
+    notification.classList.remove('hide');
+    overlay.style.display = 'block';
+}
+
 async function deletePdfPages(file, pageRange, output) {
     const arrayBuffer = await file.arrayBuffer();
     const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
@@ -133,20 +158,4 @@ function validatePageRange(pageRange, totalPages) {
     }
 
     return true;
-}
-
-function showNotification(message) {
-    const notification = document.getElementById('notification');
-    const overlay = document.getElementById('overlay');
-    notification.textContent = message;
-    notification.classList.add('show');
-    overlay.style.display = 'block';
-    setTimeout(() => {
-        notification.classList.remove('show');
-        notification.classList.add('hide');
-        setTimeout(() => {
-            notification.classList.remove('hide');
-            overlay.style.display = 'none';
-        }, 500);
-    }, 3000);
 }
