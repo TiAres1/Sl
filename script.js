@@ -16,12 +16,8 @@ document.getElementById('delete-pages-btn').addEventListener('click', async () =
         const arrayBuffer = await file.arrayBuffer();
         const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
         totalPages = pdfDoc.getPages().length;
-    } else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-        totalPages = await getWordPageCount(file);
-    } else if (fileType === 'application/vnd.openxmlformats-officedocument.presentationml.presentation') {
-        totalPages = await getPptPageCount(file);
     } else {
-        showNotification('يرجى اختيار ملف PDF!');
+        showNotification('الموقع حاليا لا يقبل الا PDF');
         return;
     }
 
@@ -30,15 +26,8 @@ document.getElementById('delete-pages-btn').addEventListener('click', async () =
         return;
     }
 
-    if (fileType === 'application/pdf') {
-        await deletePdfPages(file, pageRange, output);
-    } else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-        await deleteWordPages(file, pageRange, output);
-    } else if (fileType === 'application/vnd.openxmlformats-officedocument.presentationml.presentation') {
-        await deletePptPages(file, pageRange, output);
-    }
+    await deletePdfPages(file, pageRange, output);
 
-    // إعادة تعيين المدخلات بعد العملية
     fileInput.value = '';
     document.querySelector('label[for="file-input"]').textContent = 'اختر ملفك!';
     document.getElementById('page-range').value = '';
@@ -114,16 +103,6 @@ async function deletePdfPages(file, pageRange, output) {
     output.appendChild(link);
 
     showNotification('تم حذف الصفحات بنجاح!');
-}
-
-async function deleteWordPages(file, pageRange, output) {
-    // معالجة ملفات Word هنا
-    showNotification('حذف الصفحات من ملفات Word غير مدعوم حاليًا');
-}
-
-async function deletePptPages(file, pageRange, output) {
-    // معالجة ملفات PowerPoint هنا
-    showNotification('حذف الصفحات من ملفات PowerPoint غير مدعوم حاليًا');
 }
 
 function parsePageRange(pageRange, totalPages) {
