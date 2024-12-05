@@ -87,24 +87,29 @@ label[for="file-input"]:hover {
     font-weight: bold;
 }
 
-#delete-pages-btn {
+#delete-pages-btn, #cancel-btn {
     background-color: white;
     color: #b9005d;
     border: 2px solid white;
     padding: 10px 20px;
-    /* border: none; */
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin: 5px;
 }
 
-#delete-pages-btn:hover {
+#delete-pages-btn:hover, #cancel-btn:hover {
     background-color: transparent;
     color: white;
 }
 
 #output {
     margin-top: 20px;
+}
+
+#output a {
+    color: white;
+    text-decoration: none;
 }
 
 .overlay {
@@ -124,13 +129,16 @@ label[for="file-input"]:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #4caf50;
-    color: white;
-    padding: 20px;
+    background-color: white;
+    color: #b9005d;
+    padding: 10px 35px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     transition: opacity 0.5s ease, transform 0.5s ease;
+    font-size: 16px;
+    width: 180px;
+    text-align: center;
 }
 
 .notification.show {
