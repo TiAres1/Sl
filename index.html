@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>حذف صفحات من ملفات PDF و Word و PowerPoint</title>
+</head>
+<body>
+    <div class="container">
+        <h1>أحذف الزايد!</h1>
+        <div class="upload-section">
+            <input type="file" id="file-input" accept=".pdf,.docx,.pptx">
+            <label for="file-input">أختر ملفك!</label>
+        </div>
+        <div class="page-selection">
+            <label class="page-range" for="page-range">حدد الصفحات للحذف:</label>
+            <input type="text" id="page-range" placeholder="مثال: 2 أو 2-7">
+        </div>
+        <button id="delete-pages-btn">حذف الصفحات</button>
+        <div id="output"></div>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+    <div id="notification" class="notification"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.0.0-beta.4/docx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pptxgenjs/3.4.0/pptxgen.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
