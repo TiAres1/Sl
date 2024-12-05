@@ -148,5 +148,5 @@ function showNotification(message) {
             notification.classList.remove('hide');
             overlay.style.display = 'none';
         }, 500);
-    }, 1500);
+    }, 1000);
 }
